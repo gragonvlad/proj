@@ -2,12 +2,13 @@
 
 <div>
       <title>{{ app }}</title>
-      <ul>
-<li><a v-bind:href="url1">{{ menu1 }}</a></li>
-<li><a v-bind:href="url2">{{ menu2 }}</a></li>
-<li><a v-bind:href="url3">{{ menu3 }}</a></li>
+      <ul v-bind:style="listli">
+<li v-bind:style="listlis" v-bind:type="circle" v-for="key in menusks" v-bind:title="key"><a v-bind:href="key" v-bind:style="styleObject">{{ key}}</a></li>
+
 
 </ul>
+<ul>
+  </ul>
     <div>
         <h1>TEST !!!! {{ prop.split('2').reverse().join('3') }}</h1>// 2 на 1
         <h2>TEST !!!! {{ prop.split('1').reverse().join('2') }}</h2>// 1 на 2
@@ -53,6 +54,7 @@ export default {
             'message': 'Вы загрузили эту страницу2: ' + new Date().toLocaleString(),
             'test1': 'Азора',
             'app': 'Разработка',
+            textDecoration: 'center',
              counter: 0,
             messager: 'Привет, Vue!',
             menu1: 'Start',
@@ -62,13 +64,34 @@ export default {
             url2: '/reg',
             url3: '/static',
             seen: true,
-            
+            circle: "circle",
             url: "http://www.yandex.ru",
+            styleObject: {
+    color: 'red',
+    textdecoration: 'blue',
+    fontSize: '18px',
+    'text-decoration': 'none'
+  },
+  listli: {
+    margin: '0',
+    'list-style': '0',
+    'padding-left': '50%'
+  },
+    listlis: {
+    float: 'left',
+    'margin-right': '5px'
+  },
             ACCE: [
       { text: 'Изучить JavaScript' },
       { text: 'Изучить Vue' },
       { text: 'Создать что-нибудь классное' },
             ],
+          menusks: {
+        key1: 'Start',
+        key2: 'Register',
+        key3: 'Static',
+        },
+                
             groceryList: [
       { id: 0, text: 'Овощи' },
       { id: 1, text: 'Сыр' },
