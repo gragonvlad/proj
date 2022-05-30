@@ -64,6 +64,7 @@ $result = $stmt->fetchAll();
 $result2 = $stmt2->fetchColumn(1);
 
 print_r($result);
+
 $stmt->closeCursor();
 
 print_r("\n" . $result2);
@@ -100,7 +101,8 @@ $rawDb = $stht4->fetchAll(PDO::FETCH_ASSOC);
 $id = $rawDb[0]['id'];
 $active = $rawDb[0]['active'];
 
-echo sprintf("%s %s", $id, $active, "/n");
+$format = '<form method="POST" action=%s><input type="text" name="name"/><br/></form>';
+echo sprintf($format, $active, "/n");
 
 echo "</pre>";
 $stht4->closeCursor();
@@ -122,14 +124,40 @@ $stht5->execute();
 echo "<pre>";
 
 $rawDb = $stht5->fetchAll(PDO::FETCH_ASSOC);
+$n=0;
+$id = $rawDb[$n]['menu'];
+$active = $rawDb[$n]['link'];
 
-$id = $rawDb[0]['menu'];
-$active = $rawDb[0]['link'];
+//echo sprintf("%s %s", $id, $active, "/n");
 
-echo sprintf("%s %s", $id, $active, "/n");
-
+$format = '<form method="POST" action=%s><input type="text" name="name"/><br/></form>';
+echo sprintf($format, $active, "/n");
+$format2 = '<p><a href="%s">%s</a></p>';
+echo sprintf($format2, $active, $id, "/n");
 echo "</pre>";
 $stht5->closeCursor();
+
+$sqlik45 = 'SELECT id, menu, link from newtable';
+$stht6= $conn->prepare($sqlik45);
+//$stht4->bindValue(':active' , $active, PDO::PARAM_INT);
+//$stht4->bindValue(':username' , $username, PDO::PARAM_STR);
+
+$stht6->execute();
+echo "<pre>";
+
+$rawDb = $stht6->fetchAll(PDO::FETCH_ASSOC);
+$n=4;
+$id = $rawDb[3]['menu'];
+$active = $rawDb[3]['link'];
+
+//echo sprintf("%s %s", $id, $active, "/n");
+
+$format23 = '<p><img src="%s" alt="%s" width="450" height="450"></p>';
+echo sprintf($format23, $active, $id, "FFA");
+
+echo "</pre>";
+$stht6->closeCursor();
+
 
   } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
